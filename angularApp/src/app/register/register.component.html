@@ -1,0 +1,23 @@
+<div style="text-align:center">
+  <br/>
+  <h2>Sign Up </h2>
+  <form (submit)='OnSubmit($event)'>
+      <div class="inputGroup inputGroup1">
+          <label for="user.name">Name</label>
+          <input type="text"  name="user.name"[(ngModel)]="user.name"/><br/>
+          <label for="user.email">Email</label>
+          <input type="email"  name="user.email"[(ngModel)]="user.email"/><br/>
+          <label for="user.password">Password</label>
+          <input type="password"  name="user.password"[(ngModel)]="user.password"/><br/>
+          <label for="user.cpassword">Confirm Password</label>
+          <input type="password"  name="user.cpassword"[(ngModel)]="user.cpassword"/><br/>
+          <label for="user.lat">Latitude</label>
+          <input type="text"  name="user.lat"[(ngModel)]="user.lat"/><br/>
+          <label for="user.long">Longitude</label>
+          <input type="text"  name="user.long"[(ngModel)]="user.long"/><br/><br/>
+      </div>
+      <div class="inputGroup inputGroup3">
+      <button type="submit">Register</button>
+    </div>
+  </form>
+</div>
