@@ -5,12 +5,14 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth.guard';
+import { RootComponent } from './root-component/root-component.component';
 
 const routes: Routes = [
-{path:'login',component:LoginComponent},
-{path:'register',component:RegisterComponent},
-{path:'home',component:HomeComponent,canActivate:[AuthGuard]},
-{path:'**',component:PageNotFoundComponent}
+  {path: '', component: RootComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
