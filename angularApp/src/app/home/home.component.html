@@ -1,1 +1,38 @@
 
+<div id='gmap' style='width:60%;height:450px;display:inline-block;border:5px solid cadetblue;'></div>
+<div id="content">
+        
+        <ul>
+            <li><button (click)='findMe()' class='btn'>Where Am I</button></li>
+            <li><button *ngIf='isTracking' (click)='trackMe()' class='btn'>Allow Tracking</button></li>
+            
+            <li class="dropdown">
+                <button href="javascript:void(0)" class="btn">Change Map Types</button>
+                <div class="dropdown-content">
+                <a href='#' (click)='$event.preventDefault();initialiseMap("terrain")' class="btn">Terrain</a>
+                <a href='#' (click)='$event.preventDefault();initialiseMap("satellite")' class="btn">Sattelite</a>
+                <a href='#' (click)='$event.preventDefault();initialiseMap("roadmap")' class="btn">RoadMap</a>
+                </div>
+                </li>
+                <li class="dropdown">
+                  <button href="javascript:void(0)" class="btn">More</button>
+                  <div class="dropdown-content">
+                    <a href="#" [routerLink]="['edit',currentUser.id]" class="btn">Edit Profile</a>
+                    <a href="#" [routerLink]="['editschedule',currentUser.id]" class="btn">Edit Schedule</a>
+                    <a href="#" (click)='$event.preventDefault();findMe()' class="btn">Add Locations</a>
+                  </div>
+                </li>
+                <li><button class='btn' (click)='logoutUser()' *ngIf="currentUser">LogOut</button></li>
+        </ul>
+    
+              <!-- <div id="map" height="460px" width="100%"></div> -->
+         
+    
+
+    
+
+    <br/><br/>
+    <p>Name: {{currentUser.name}}</p>
+    <p>Email: {{currentUser.email}}</p>
+    <router-outlet  style="margin:0 auto;"></router-outlet>
+</div>

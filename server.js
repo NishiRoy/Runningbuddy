@@ -72,43 +72,64 @@ app.get('/', function(req, res) {
  res.render("index",{count:count});
 })
 
-
-// post route for adding a user
-app.post('/users', function(req, res) {
- console.log("POST DATA", req.body);
- // This is where we would add the user to the database
- // Then redirect to the root route
- res.redirect('/');
-})
-
-app.get('/books',function(req,res){
-    var query=connection.query('Select * from books',function(err,result){
+app.get('/users', function(req, res) {
+ 
+    var query=connection.query('Select * from user',function(err,result){
 
         if(err){
-        console.log(err);
+            console.log(err);
             res.send(err);
-        }else{
-        console.log(result);
+        }
+        else{
+            console.log("Got all users");
             res.send(result);
         }
-
-    });
-    console.log();
+    })
 })
 
-app.post('/test/book', function(req, res){
-    console.log(req.body);
-    console.log('I was here');
-    var query = connection.query("INSERT INTO books (author,books_name) VALUES ('"+req.body.author+"','"+req.body.books_name+"');", function(err, result) {
-      if (err) {
-        console.error(err);
-        return res.send(err);
-      } else {
-        return res.send(result);
-      }
- });
+app.get('/user/:id', function(req, res) {
+ 
+    console.log("Getting a user",req.session.id);
+    var query=connection.query("Select * from user where id='"+req.params.id+"';",function(err,result){
 
-});
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        else{
+            console.log("Got a user",result);
+            res.send(result);
+        }
+    })
+})
+
+app.post('/addadress',function(req,res){
+
+    console.log(req.body);
+    var query=connection.query("Insert into address (latitude,longitude,users_id) values ('"+req.body.latitude+"','"+req.body.longitude+"','"+req.body.user_id+"');",function(err,add){
+        if(err){
+        console.log(err)
+        return res.send({err:"Something went wrong"});
+        }
+        else{
+            res.send(add);
+        }
+    })
+})
+
+app.post('/update/:id',function(req,res){
+    console.log(req.body);
+    var query=connection.query("UPDATE user Set Name='"+req.body.Name+"', Age='"+req.body.Age+"', Average_Speed='"+req.body.Average_Speed+"', Average_distance='"+req.body.Average_distance+"' Where id="+req.params.id+";",function(err,result){
+        if(err){
+            console.log(err);
+            res.send({err:"err"});
+        }
+        else{
+            console.log("Success");
+            res.send(result);
+        }
+    })
+})
 
 app.post('/login/user', function(req, res){
     console.log(req.body);
@@ -120,7 +141,7 @@ app.post('/login/user', function(req, res){
     }
     else
     {
-    var query=connection.query("Select * from users where email='"+req.body.lemail+"';",function(err,user){
+    var query=connection.query("Select * from user where email='"+req.body.lemail+"';",function(err,user){
         console.log("I was here",user);
         if(err){
             console.log("Something went wrong");
@@ -132,14 +153,14 @@ app.post('/login/user', function(req, res){
                 if(result){
                   
                     console.log("Logged in successfully");
-                    if(typeof req.session.id=='undefined')
-                        req.session.id=user[0].id;
-                    if(typeof req.session.val=='undefined')
-                        req.session.val=user.name;
+                    if(typeof req.session.userid=='undefined')
+                        req.session.userid=user[0].id;
+                    
+                        console.log("id is",req.session.userid,"vhgcjh",user[0].id);
 
                         let payload={subject:user[0].id};
                         let token =jwt.sign(payload,'secretKey');
-                        res.send({token});
+                        res.send({token,user});
                      
                 }
                 else{
@@ -175,7 +196,7 @@ app.post('/registration/user', function(req, res) {
         }else{
         hashed = hash;
         console.log("pwd is",hashed)
-        var query=connection.query("INSERT INTO users (name,email,password,latitude,longitude) VALUES ('"+req.body.name+"','"+req.body.email+"','"+hashed+"','"+req.body.lat+"','"+req.body.long+"');",function(err,user){
+        var query=connection.query("INSERT INTO user (Name,email,password,latitude,longitude) VALUES ('"+req.body.name+"','"+req.body.email+"','"+hashed+"','"+req.body.lat+"','"+req.body.long+"');",function(err,user){
         if(err){
             console.log("Something is wrong",err);
             res.send(err);
@@ -183,13 +204,12 @@ app.post('/registration/user', function(req, res) {
         else{
             console.log("successfully registered a user",user);
             if(typeof req.session.id=='undefined')
-                req.session.id=user.id;
-            if(typeof req.session.val=='undefined')
-                req.session.val=user.name
+                req.session.userid=user.insertId;
+          
 
-            let payload={subject:user.id};
+            let payload={subject:user.insertId};
             let token =jwt.sign(payload,'secretKey');
-            res.send({token});
+            res.send({token,user});
         }   
     })
     }

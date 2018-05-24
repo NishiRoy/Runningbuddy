@@ -19,6 +19,7 @@ const routes: Routes = [
   {path:'editschedule/:id',component:EditScheduleComponent},
   {path:'gorunning/:id',component:GoRunningComponent}]},
   {path: '**', component: PageNotFoundComponent},
+
 ];
 
 @NgModule({
@@ -27,4 +28,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const rountingcomponent=[LoginComponent,RegisterComponent,HomeComponent,PageNotFoundComponent ]
+export const rountingcomponent=[LoginComponent,RegisterComponent,HomeComponent,PageNotFoundComponent,EditProfileComponent,EditScheduleComponent,GoRunningComponent ]
