@@ -1,1 +1,27 @@
 
+<div id="content">
+        <button class='btn' (click)='logoutUser()' *ngIf="currentUser">LogOut</button>
+        <ul>
+                <li><button (click)='initialiseMap("terrain")' class="btn">Terrain</button></li>
+                <li> <button (click)='initialiseMap("satellite")' class="btn">Sattelite</button></li>
+                <li><button (click)='initialiseMap("roadmap")' class="btn">RoadMap</button></li>
+                <li class="dropdown">
+                  <button href="javascript:void(0)" class="btn">More</button>
+                  <div class="dropdown-content">
+                    <a href="#" (click)="$event.preventDefault();editProfile(currentUser.id)" class="btn">Edit Profile</a>
+                    <a href="#" (click)="$event.preventDefault();editSchedule(currentUser.id)">Edit Schedule</a>
+                    <a href="#" (click)="$event.preventDefault();addLocations(currentUser.id)">Add Locations</a>
+                  </div>
+                </li>
+              </ul>
+    
+   
+    
+
+    
+
+    <br/><br/>
+    <p>Name: {{currentUser.name}}</p>
+    <p>Email: {{currentUser.email}}</p>
+</div>
+<router-outlet></router-outlet>

@@ -72,13 +72,35 @@ app.get('/', function(req, res) {
  res.render("index",{count:count});
 })
 
+app.get('/users', function(req, res) {
+ 
+    var query=connection.query('Select * from users',function(err,result){
 
-// post route for adding a user
-app.post('/users', function(req, res) {
- console.log("POST DATA", req.body);
- // This is where we would add the user to the database
- // Then redirect to the root route
- res.redirect('/');
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        else{
+            console.log("Got all users");
+            res.send(result);
+        }
+    })
+})
+
+app.get('/user/:id', function(req, res) {
+ 
+    console.log("Getting a user",req.session.id);
+    var query=connection.query("Select * from users where id='"+req.params.id+"';",function(err,result){
+
+        if(err){
+            console.log(err);
+            res.send(err);
+        }
+        else{
+            console.log("Got a user",result);
+            res.send(result);
+        }
+    })
 })
 
 app.get('/books',function(req,res){
@@ -132,14 +154,14 @@ app.post('/login/user', function(req, res){
                 if(result){
                   
                     console.log("Logged in successfully");
-                    if(typeof req.session.id=='undefined')
-                        req.session.id=user[0].id;
-                    if(typeof req.session.val=='undefined')
-                        req.session.val=user.name;
+                    if(typeof req.session.userid=='undefined')
+                        req.session.userid=user[0].id;
+                    
+                        console.log("id is",req.session.userid,"vhgcjh",user[0].id);
 
                         let payload={subject:user[0].id};
                         let token =jwt.sign(payload,'secretKey');
-                        res.send({token});
+                        res.send({token,user});
                      
                 }
                 else{

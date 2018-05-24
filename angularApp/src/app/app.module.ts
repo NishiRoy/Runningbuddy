@@ -9,11 +9,11 @@ import { FormsModule } from '@angular/forms';
 import {AuthGuard} from './auth.guard';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     rountingcomponent,
-   
   ],
   imports: [
     BrowserModule,

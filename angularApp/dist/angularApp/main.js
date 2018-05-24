@@ -40,7 +40,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _register_register_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./register/register.component */ "./src/app/register/register.component.ts");
 /* harmony import */ var _home_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home/home.component */ "./src/app/home/home.component.ts");
 /* harmony import */ var _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./page-not-found/page-not-found.component */ "./src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./edit-profile/edit-profile.component */ "./src/app/edit-profile/edit-profile.component.ts");
+/* harmony import */ var _edit_schedule_edit_schedule_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./edit-schedule/edit-schedule.component */ "./src/app/edit-schedule/edit-schedule.component.ts");
+/* harmony import */ var _go_running_go_running_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./go-running/go-running.component */ "./src/app/go-running/go-running.component.ts");
+/* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54,10 +57,17 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
 var routes = [
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
     { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_3__["RegisterComponent"] },
-    { path: 'home', component: _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_6__["AuthGuard"]] },
+    { path: 'home/:id', component: _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]], children: [
+            { path: 'edit/:id', component: _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_6__["EditProfileComponent"] },
+            { path: 'editschedule/:id', component: _edit_schedule_edit_schedule_component__WEBPACK_IMPORTED_MODULE_7__["EditScheduleComponent"] },
+            { path: 'gorunning/:id', component: _go_running_go_running_component__WEBPACK_IMPORTED_MODULE_8__["GoRunningComponent"] }
+        ] },
     { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -72,7 +82,7 @@ var AppRoutingModule = /** @class */ (function () {
     return AppRoutingModule;
 }());
 
-var rountingcomponent = [_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"], _register_register_component__WEBPACK_IMPORTED_MODULE_3__["RegisterComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"], _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"]];
+var rountingcomponent = [_login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"], _register_register_component__WEBPACK_IMPORTED_MODULE_3__["RegisterComponent"], _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"], _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"], _edit_profile_edit_profile_component__WEBPACK_IMPORTED_MODULE_6__["EditProfileComponent"], _edit_schedule_edit_schedule_component__WEBPACK_IMPORTED_MODULE_7__["EditScheduleComponent"], _go_running_go_running_component__WEBPACK_IMPORTED_MODULE_8__["GoRunningComponent"]];
 
 
 /***/ }),
@@ -268,6 +278,195 @@ var AuthGuard = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/edit-profile/edit-profile.component.css":
+/*!*********************************************************!*\
+  !*** ./src/app/edit-profile/edit-profile.component.css ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/edit-profile/edit-profile.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/edit-profile/edit-profile.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  edit-profile works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/edit-profile/edit-profile.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/edit-profile/edit-profile.component.ts ***!
+  \********************************************************/
+/*! exports provided: EditProfileComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditProfileComponent", function() { return EditProfileComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var EditProfileComponent = /** @class */ (function () {
+    function EditProfileComponent() {
+    }
+    EditProfileComponent.prototype.ngOnInit = function () {
+    };
+    EditProfileComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-edit-profile',
+            template: __webpack_require__(/*! ./edit-profile.component.html */ "./src/app/edit-profile/edit-profile.component.html"),
+            styles: [__webpack_require__(/*! ./edit-profile.component.css */ "./src/app/edit-profile/edit-profile.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], EditProfileComponent);
+    return EditProfileComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/edit-schedule/edit-schedule.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/edit-schedule/edit-schedule.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/edit-schedule/edit-schedule.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/edit-schedule/edit-schedule.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  edit-schedule works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/edit-schedule/edit-schedule.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/edit-schedule/edit-schedule.component.ts ***!
+  \**********************************************************/
+/*! exports provided: EditScheduleComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditScheduleComponent", function() { return EditScheduleComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var EditScheduleComponent = /** @class */ (function () {
+    function EditScheduleComponent() {
+    }
+    EditScheduleComponent.prototype.ngOnInit = function () {
+    };
+    EditScheduleComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-edit-schedule',
+            template: __webpack_require__(/*! ./edit-schedule.component.html */ "./src/app/edit-schedule/edit-schedule.component.html"),
+            styles: [__webpack_require__(/*! ./edit-schedule.component.css */ "./src/app/edit-schedule/edit-schedule.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], EditScheduleComponent);
+    return EditScheduleComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/go-running/go-running.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/go-running/go-running.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/go-running/go-running.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/go-running/go-running.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  go-running works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/go-running/go-running.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/go-running/go-running.component.ts ***!
+  \****************************************************/
+/*! exports provided: GoRunningComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GoRunningComponent", function() { return GoRunningComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var GoRunningComponent = /** @class */ (function () {
+    function GoRunningComponent() {
+    }
+    GoRunningComponent.prototype.ngOnInit = function () {
+    };
+    GoRunningComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-go-running',
+            template: __webpack_require__(/*! ./go-running.component.html */ "./src/app/go-running/go-running.component.html"),
+            styles: [__webpack_require__(/*! ./go-running.component.css */ "./src/app/go-running/go-running.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], GoRunningComponent);
+    return GoRunningComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/home/home.component.css":
 /*!*****************************************!*\
   !*** ./src/app/home/home.component.css ***!
@@ -275,7 +474,7 @@ var AuthGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#content{\r\n    padding:10px;\r\n    background-color:#BEDCFE;\r\n    display:inline-block;\r\n    vertical-align:top;\r\n    width:35%;\r\n    color:black;\r\n}\r\n\r\n.btn{\r\n    margin:15px;\r\n\r\n    padding:5px;\r\n    text-align:center;\r\n}\r\n\r\nul {\r\n    list-style-type: none;\r\n    margin: 0;\r\n    padding: 0;\r\n    overflow: hidden;\r\n    /* background-color:#85BDA6; */\r\n}\r\n\r\nli {\r\n    float: left;\r\n}\r\n\r\nli a, .dropbtn {\r\n    display: inline-block;\r\n    color: white;\r\n    text-align: center;\r\n    padding: 14px 16px;\r\n    text-decoration: none;\r\n}\r\n\r\nli a:hover, .dropdown:hover .dropbtn {\r\n    background-color:#85BDA6;\r\n}\r\n\r\nli.dropdown {\r\n    display: inline-block;\r\n}\r\n\r\n.dropdown-content {\r\n    display: none;\r\n    position: absolute;\r\n    background-color: #f9f9f9;\r\n    min-width: 160px;\r\n    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\r\n    z-index: 1;\r\n}\r\n\r\n.dropdown-content a {\r\n    color: black;\r\n    padding: 12px 16px;\r\n    text-decoration: none;\r\n    display: block;\r\n    text-align: left;\r\n}\r\n\r\n.dropdown-content a:hover {background-color: #f1f1f1}\r\n\r\n.dropdown:hover .dropdown-content {\r\n    display: block;\r\n}"
 
 /***/ }),
 
@@ -286,7 +485,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n"
+module.exports = "\n<div id=\"content\">\n        <button class='btn' (click)='logoutUser()' *ngIf=\"currentUser\">LogOut</button>\n        <ul>\n                <li><button (click)='initialiseMap(\"terrain\")' class=\"btn\">Terrain</button></li>\n                <li> <button (click)='initialiseMap(\"satellite\")' class=\"btn\">Sattelite</button></li>\n                <li><button (click)='initialiseMap(\"roadmap\")' class=\"btn\">RoadMap</button></li>\n                <li class=\"dropdown\">\n                  <button href=\"javascript:void(0)\" class=\"btn\">More</button>\n                  <div class=\"dropdown-content\">\n                    <a href=\"#\" (click)=\"$event.preventDefault();editProfile(currentUser.id)\" class=\"btn\">Edit Profile</a>\n                    <a href=\"#\" (click)=\"$event.preventDefault();editSchedule(currentUser.id)\">Edit Schedule</a>\n                    <a href=\"#\" (click)=\"$event.preventDefault();addLocations(currentUser.id)\">Add Locations</a>\n                  </div>\n                </li>\n              </ul>\n    \n   \n    \n\n    \n\n    <br/><br/>\n    <p>Name: {{currentUser.name}}</p>\n    <p>Email: {{currentUser.email}}</p>\n</div>\n<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -302,6 +501,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http.service */ "./src/app/http.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -313,10 +513,14 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent(_httpService) {
+    function HomeComponent(_httpService, route, _router) {
         this._httpService = _httpService;
+        this.route = route;
+        this._router = _router;
         this.title = 'Test Google Maps';
+        this.map = new google.maps.Map(document.getElementById('gmap'));
         this.iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
         this.markerTypes = [
             {
@@ -326,24 +530,110 @@ var HomeComponent = /** @class */ (function () {
         this.selectedMarkerType = "info-i_maps.png";
     }
     HomeComponent.prototype.ngOnInit = function () {
-        var mapProp = {
-            center: new google.maps.LatLng(47.609859, -122.196615),
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        this.initMap(mapProp);
+        this.currentUser = '';
+        this.logged_in = this._router.snapshot.paramMap.get('id');
+        // let mapProp={
+        //   center:new google.maps.LatLng(47.609859,-122.196615),
+        //   zoom:15,
+        //   mapTypeId: google.maps.MapTypeId.ROADMAP
+        // };
+        this.logged();
+        this.getUsers();
         // this.getThings();
     };
-    HomeComponent.prototype.initMap = function (mapProp) {
-        this.map = new google.maps.Map(document.getElementById('gmap'), mapProp);
+    HomeComponent.prototype.logged = function () {
+        var _this = this;
+        var temp = this._httpService.getUser(this.logged_in);
+        temp.subscribe(function (data) {
+            console.log("Logged in User is", data);
+            _this.currentUser = data[0];
+        });
     };
-    HomeComponent.prototype.setMapType = function (mapTypeId) {
-        this.map.setMapTypeId(mapTypeId);
+    HomeComponent.prototype.getUsers = function () {
+        var _this = this;
+        var temp = this._httpService.getusers();
+        temp.subscribe(function (data) {
+            // console.log(data)
+            _this.locations = _this.convertToMapPoints(data);
+            console.log('hello', _this.locations);
+            var value = google.maps.MapTypeId.ROADMAP;
+            _this.initialiseMap(value);
+        });
+    };
+    HomeComponent.prototype.convertToMapPoints = function (data) {
+        this.locations = [];
+        for (var i = 0; i < data.length; i++) {
+            var user = data[i];
+            var contentString = '<p><b>User Name :' + user.name +
+                '<br/><b> Email :' + user.email +
+                '</p>';
+            // console.log(user.latitude,user.longitude);
+            if (this.currentUser.id != user.id) {
+                this.locations.push({
+                    latlon: new google.maps.LatLng(user.latitude, user.longitude),
+                    message: new google.maps.InfoWindow({
+                        content: contentString,
+                        maxWidth: 300
+                    }),
+                    username: user.name,
+                    email: user.email
+                });
+            }
+        }
+        return this.locations;
+    };
+    HomeComponent.prototype.initialiseMap = function (type) {
+        // this.map=new google.maps.Map(document.getElementById('gmap'),mapProp);
+        console.log("values ", type);
+        var map = new google.maps.Map(document.getElementById('gmap'), {
+            zoom: 12,
+            center: new google.maps.LatLng(this.currentUser.latitude, this.currentUser.longitude),
+            mapTypeId: type,
+        });
+        this.locations.forEach(function (item) {
+            // console.log('item',item);
+            var marker = new google.maps.Marker({
+                position: item.latlon,
+                map: map,
+                title: 'User Map',
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            });
+            console.log('marker', marker);
+            google.maps.event.addListener(marker, 'click', function (e) {
+                var currentSelectedMarker = item;
+                item.message.open(map, marker);
+            });
+        });
+        var initialLocation = new google.maps.LatLng(this.currentUser.latitude, this.currentUser.longitude);
+        var marker = new google.maps.Marker({
+            position: initialLocation,
+            animation: google.maps.Animation.BOUNCE,
+            map: map,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+        });
+        new google.maps.Circle({
+            center: new google.maps.LatLng(this.currentUser.latitude, this.currentUser.longitude),
+            radius: 1 * 1000,
+            fillColor: '#FF0000',
+            fillOpacity: 0.2,
+            map: map
+        });
+        var pointA = new google.maps.LatLng(this.currentUser.latitude, this.currentUser.longitude);
+        new google.maps.Marker({
+            position: this.destinationPoint(pointA, 90, 1),
+            map: map,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+        });
+    };
+    HomeComponent.prototype.setMapType = function (maptype) {
+        // this.map.setMapTypeId(mapTypeId);
+        // this.mapTypeId=google.maps.MapTypeId.maptype;
     };
     HomeComponent.prototype.setCenter = function () {
         var _this = this;
         this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
         var location = new google.maps.LatLng(this.latitude, this.longitude);
+        console.log("This is what it looks like", location);
         var marker = new google.maps.Marker({
             position: location,
             map: this.map,
@@ -371,6 +661,42 @@ var HomeComponent = /** @class */ (function () {
             title: 'Got you!'
         });
     };
+    HomeComponent.prototype.toRad = function (num) {
+        return num * (Math.PI / 180);
+    };
+    HomeComponent.prototype.toDeg = function (num) {
+        return num * 180 / Math.PI;
+    };
+    HomeComponent.prototype.destinationPoint = function (pointA, brng, dist) {
+        dist = dist / 6371;
+        brng = this.toRad(brng);
+        var lat1 = this.toRad(pointA.lat()), lon1 = this.toRad(pointA.lng());
+        var lat2 = Math.asin(Math.sin(lat1) * Math.cos(dist) +
+            Math.cos(lat1) * Math.sin(dist) * Math.cos(brng));
+        var lon2 = lon1 + Math.atan2(Math.sin(brng) * Math.sin(dist) *
+            Math.cos(lat1), Math.cos(dist) - Math.sin(lat1) *
+            Math.sin(lat2));
+        if (isNaN(lat2) || isNaN(lon2))
+            return null;
+        return new google.maps.LatLng(this.toDeg(lat2), this.toDeg(lon2));
+    };
+    HomeComponent.prototype.drawCircle = function () {
+    };
+    HomeComponent.prototype.editProfile = function (id) {
+        console.log("Editing shit");
+        this.route.navigate(['/edit', id]);
+    };
+    HomeComponent.prototype.editSchedule = function (id) {
+        this.route.navigate(['/editschedule', id]);
+    };
+    HomeComponent.prototype.addLocations = function (id) {
+        this.route.navigate(['/gorunning', id]);
+    };
+    HomeComponent.prototype.logoutUser = function () {
+        this.currentUser = '';
+        this.logged_in = '';
+        this._httpService.logout();
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('gmap'),
         __metadata("design:type", Object)
@@ -381,7 +707,7 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"]])
+        __metadata("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -402,6 +728,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -413,12 +740,21 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var HttpService = /** @class */ (function () {
-    function HttpService(_http) {
+    function HttpService(_http, route) {
         this._http = _http;
+        this.route = route;
     }
     HttpService.prototype.loggedIn = function () {
         return !!localStorage.getItem('token');
+    };
+    HttpService.prototype.logout = function () {
+        localStorage.removeItem('token');
+        this.route.navigate(['/login']);
+    };
+    HttpService.prototype.getUser = function (id) {
+        return this._http.get('/user/' + id);
     };
     HttpService.prototype.postStuff = function (values) {
         console.log("Here I am", values);
@@ -433,11 +769,14 @@ var HttpService = /** @class */ (function () {
     HttpService.prototype.login_user = function (user) {
         return this._http.post('/login/user', user);
     };
+    HttpService.prototype.getusers = function () {
+        return this._http.get('/users');
+    };
     HttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], HttpService);
     return HttpService;
 }());
@@ -520,7 +859,7 @@ var LoginComponent = /** @class */ (function () {
         temp.subscribe(function (data) {
             console.log("Logged in user", data);
             localStorage.setItem('token', data['token']);
-            _this._route.navigate(['/home']);
+            _this._route.navigate(['/home', data['user'][0].id]);
         });
     };
     LoginComponent = __decorate([

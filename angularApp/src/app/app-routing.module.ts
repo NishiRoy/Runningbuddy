@@ -4,12 +4,18 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { EditScheduleComponent } from './edit-schedule/edit-schedule.component';
+import { GoRunningComponent } from './go-running/go-running.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
 {path:'login',component:LoginComponent},
 {path:'register',component:RegisterComponent},
-{path:'home',component:HomeComponent,canActivate:[AuthGuard]},
+{path:'home/:id',component:HomeComponent,canActivate:[AuthGuard],children:[
+ {path:'edit/:id',component:EditProfileComponent},
+ {path:'editschedule/:id',component:EditScheduleComponent},
+ {path:'gorunning/:id',component:GoRunningComponent}]},
 {path:'**',component:PageNotFoundComponent}
 ];
 
@@ -19,4 +25,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const rountingcomponent=[LoginComponent,RegisterComponent,HomeComponent,PageNotFoundComponent ]
+export const rountingcomponent=[LoginComponent,RegisterComponent,HomeComponent,PageNotFoundComponent,EditProfileComponent,EditScheduleComponent,GoRunningComponent ]
