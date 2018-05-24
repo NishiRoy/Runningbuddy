@@ -1,0 +1,20 @@
+<div style="text-align:center">
+    <br/>
+    <h2>Edit Profile </h2>
+    <form (submit)='OnSubmit($event)'>
+        <div class="inputGroup inputGroup1">
+            <label for="user.Name">Name    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text"  name="user.Name"[(ngModel)]="user.Name"/><br/>
+            <label for="user.Age">Age    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text"  name="user.Age"[(ngModel)]="user.Age"/><br/>
+            <label for="user.Average_Speed">Average Speed(mins/mile)&nbsp;</label>
+            <input type="text" name="user.Average_Speed"[(ngModel)]="user.Average_Speed"/> <br/>
+            <label for="user.Average_distance">Average Distance(miles)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input type="text" name="user.Average_distance"[(ngModel)]="user.Average_distance"/><br/>
+            
+        </div>
+        <div class="inputGroup inputGroup3">
+        <button type="submit">Edit</button>
+      </div>
+    </form>
+  </div>

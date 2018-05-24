@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       temp.subscribe(data=>{
         console.log("returned this",data);
         localStorage.setItem('token',data['token'])
-        this._route.navigate(['/home']);
+        this._route.navigate(['/home'],data['user'].insertId);
       })
   }
 }

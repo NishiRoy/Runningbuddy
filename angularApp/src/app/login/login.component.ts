@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
     temp.subscribe(data=>{
       console.log("Logged in user",data);
       localStorage.setItem('token',data['token'])
-      this._route.navigate(['/home']);
+      this._route.navigate(['/home',data['user'][0].id]);
     })
   }
 
