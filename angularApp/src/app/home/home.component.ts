@@ -14,13 +14,14 @@ export class HomeComponent implements OnInit {
   
   title = 'Test Google Maps';
 
-  @ViewChild('gmap') gmapElement:any;
-
-  map = new google.maps.Map(document.getElementById('gmap'))
-
   latitude:any;
   longitude:any;
   values:any;
+
+  isTracking = false;
+
+  currentLat: any;
+  currentLong: any
 
   iconBase="https://maps.google.com/mapfiles/kml/shapes/";
 
@@ -45,19 +46,10 @@ export class HomeComponent implements OnInit {
 
     this.logged_in=this._router.snapshot.paramMap.get('id');
 
-    // let mapProp={
-    //   center:new google.maps.LatLng(47.609859,-122.196615),
-    //   zoom:15,
-    //   mapTypeId: google.maps.MapTypeId.ROADMAP
-    // };
-
     this.logged();
 
     this.getUsers();
-    
-
-   
-    // this.getThings();
+  
 
   }
 
@@ -99,7 +91,6 @@ export class HomeComponent implements OnInit {
       '<br/><b> Email :'+user.email+
       '</p>';
 
-      // console.log(user.latitude,user.longitude);
       if(this.currentUser.id!=user.id){
       this.locations.push({
         latlon:new google.maps.LatLng(user.latitude,user.longitude),
@@ -119,7 +110,6 @@ export class HomeComponent implements OnInit {
 
 
   initialiseMap(type){
-    // this.map=new google.maps.Map(document.getElementById('gmap'),mapProp);
 
       console.log("values ",type);
 
@@ -131,14 +121,13 @@ export class HomeComponent implements OnInit {
     
 
     this.locations.forEach(function(item){
-      // console.log('item',item);
       var marker= new google.maps.Marker({
         position:item.latlon,
         map:map,
         title:'User Map',
         icon:'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
       });
-      console.log('marker',marker);
+
       google.maps.event.addListener(marker,'click',function(e){
         let currentSelectedMarker=item;
         item.message.open(map,marker);
@@ -169,62 +158,9 @@ export class HomeComponent implements OnInit {
     position: this.destinationPoint(pointA,90, 1),
     map: map,
     icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
- });
-    }
-
-
-  setMapType(maptype:string){
-    // this.map.setMapTypeId(mapTypeId);
-    // this.mapTypeId=google.maps.MapTypeId.maptype;
+  });
   }
 
-  setCenter(){
-    this.map.setCenter(new google.maps.LatLng(this.latitude,this.longitude));
-
-    let location = new google.maps.LatLng(this.latitude,this.longitude);
-
-    console.log("This is what it looks like",location);
-
-    let marker=new google.maps.Marker({
-      position:location,
-      map:this.map,
-      title:'Nobody!'
-    });
-
-    marker.addListener('click', this.simpleMarkerHandler);
-
-    marker.addListener('click',()=>{
-      this.markerHandler(marker);
-    });
-
-  }
-
-  simpleMarkerHandler() {
-    alert('Simple Component\'s function...');
-  }
-
-  markerHandler(marker: google.maps.Marker) {
-    alert('Marker\'s Title: ' + marker.getTitle());
-  }
-
-  
-  showCustomMarker() {
-
-
-    this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
-
-    let location = new google.maps.LatLng(this.latitude, this.longitude);
-
-    console.log(`selected marker: ${this.selectedMarkerType}`);
-    
-    let marker = new google.maps.Marker({
-      position: location,
-      map: this.map,
-      icon: this.iconBase + this.selectedMarkerType,
-      title: 'Got you!'
-    });
-
-  }
 
 toRad(num) {
     return num*(Math.PI / 180);
@@ -260,19 +196,19 @@ toRad(num) {
  editProfile(id){
    console.log("Editing shit");
 
-   this.route.navigate(['/edit',id]);
+  //  this.route.navigate(['/edit/',id]);
 
  }
 
  editSchedule(id){
 
-  this.route.navigate(['/editschedule',id]);
+  // this.route.navigate(['/editschedule',id]);
 
  }
 
  addLocations(id){
 
-  this.route.navigate(['/gorunning',id]);
+  // this.route.navigate(['/gorunning',id]);
 
  }
 
@@ -282,5 +218,42 @@ toRad(num) {
   this._httpService.logout();
 }
 
-
+findMe() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.showPosition(position);
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
 }
+
+showPosition(position) {
+  this.currentUser.latitude = position.coords.latitude;
+  this.currentUser.longitude = position.coords.longitude;
+
+  this.initialiseMap('roadmap');
+}
+
+trackMe() {
+  if (navigator.geolocation) {
+    this.isTracking = true;
+    navigator.geolocation.watchPosition((position) => {
+      this.showTrackingPosition(position);
+    });
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+}
+
+showTrackingPosition(position) {
+  console.log(`tracking postion:  ${position.coords.latitude} - ${position.coords.longitude}`);
+  this.currentUser.latitude = position.coords.latitude;
+  this.currentUser.longitude= position.coords.longitude;
+
+  // this.initialiseMap('roadmap');
+}
+}
+
+
+

@@ -74,7 +74,7 @@ app.get('/', function(req, res) {
 
 app.get('/users', function(req, res) {
  
-    var query=connection.query('Select * from users',function(err,result){
+    var query=connection.query('Select * from user',function(err,result){
 
         if(err){
             console.log(err);
@@ -90,7 +90,7 @@ app.get('/users', function(req, res) {
 app.get('/user/:id', function(req, res) {
  
     console.log("Getting a user",req.session.id);
-    var query=connection.query("Select * from users where id='"+req.params.id+"';",function(err,result){
+    var query=connection.query("Select * from user where id='"+req.params.id+"';",function(err,result){
 
         if(err){
             console.log(err);
@@ -142,7 +142,7 @@ app.post('/login/user', function(req, res){
     }
     else
     {
-    var query=connection.query("Select * from users where email='"+req.body.lemail+"';",function(err,user){
+    var query=connection.query("Select * from user where email='"+req.body.lemail+"';",function(err,user){
         console.log("I was here",user);
         if(err){
             console.log("Something went wrong");
@@ -197,7 +197,7 @@ app.post('/registration/user', function(req, res) {
         }else{
         hashed = hash;
         console.log("pwd is",hashed)
-        var query=connection.query("INSERT INTO users (name,email,password,latitude,longitude) VALUES ('"+req.body.name+"','"+req.body.email+"','"+hashed+"','"+req.body.lat+"','"+req.body.long+"');",function(err,user){
+        var query=connection.query("INSERT INTO user (Name,email,password,latitude,longitude) VALUES ('"+req.body.name+"','"+req.body.email+"','"+hashed+"','"+req.body.lat+"','"+req.body.long+"');",function(err,user){
         if(err){
             console.log("Something is wrong",err);
             res.send(err);
@@ -205,13 +205,12 @@ app.post('/registration/user', function(req, res) {
         else{
             console.log("successfully registered a user",user);
             if(typeof req.session.id=='undefined')
-                req.session.id=user.id;
-            if(typeof req.session.val=='undefined')
-                req.session.val=user.name
+                req.session.userid=user.insertId;
+          
 
-            let payload={subject:user.id};
+            let payload={subject:user.insertId};
             let token =jwt.sign(payload,'secretKey');
-            res.send({token});
+            res.send({token,user});
         }   
     })
     }

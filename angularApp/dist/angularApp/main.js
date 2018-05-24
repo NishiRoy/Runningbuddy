@@ -485,7 +485,7 @@ module.exports = "#content{\r\n    padding:10px;\r\n    background-color:#BEDCFE
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div id=\"content\">\n        <button class='btn' (click)='logoutUser()' *ngIf=\"currentUser\">LogOut</button>\n        <ul>\n                <li><button (click)='initialiseMap(\"terrain\")' class=\"btn\">Terrain</button></li>\n                <li> <button (click)='initialiseMap(\"satellite\")' class=\"btn\">Sattelite</button></li>\n                <li><button (click)='initialiseMap(\"roadmap\")' class=\"btn\">RoadMap</button></li>\n                <li class=\"dropdown\">\n                  <button href=\"javascript:void(0)\" class=\"btn\">More</button>\n                  <div class=\"dropdown-content\">\n                    <a href=\"#\" (click)=\"$event.preventDefault();editProfile(currentUser.id)\" class=\"btn\">Edit Profile</a>\n                    <a href=\"#\" (click)=\"$event.preventDefault();editSchedule(currentUser.id)\">Edit Schedule</a>\n                    <a href=\"#\" (click)=\"$event.preventDefault();addLocations(currentUser.id)\">Add Locations</a>\n                  </div>\n                </li>\n              </ul>\n    \n   \n    \n\n    \n\n    <br/><br/>\n    <p>Name: {{currentUser.name}}</p>\n    <p>Email: {{currentUser.email}}</p>\n</div>\n<router-outlet></router-outlet>"
+module.exports = "\n<div id='gmap' style='width:60%;height:450px;display:inline-block;border:5px solid cadetblue;'></div>\n<div id=\"content\">\n        <button class='btn' (click)='logoutUser()' *ngIf=\"currentUser\">LogOut</button>\n        <ul>\n                <li><button (click)='initialiseMap(\"terrain\")' class=\"btn\">Terrain</button></li>\n                <li><button (click)='initialiseMap(\"satellite\")' class=\"btn\">Sattelite</button></li>\n                <li><button (click)='initialiseMap(\"roadmap\")' class=\"btn\">RoadMap</button></li>\n                <li><button (click)='findMe()' class='btn'>findMe</button></li>\n                <li><button (click)='trackMe()' class='btn'>trackme</button></li>\n                <li class=\"dropdown\">\n                  <button href=\"javascript:void(0)\" class=\"btn\">More</button>\n                  <div class=\"dropdown-content\">\n                    <a href=\"#\" [routerLink]=\"['edit',currentUser.id]\" class=\"btn\">Edit Profile</a>\n                    <a href=\"#\" [routerLink]=\"['editschedule',currentUser.id]\" class=\"btn\">Edit Schedule</a>\n                    <a href=\"#\" [routerLink]=\"['gorunning',currentUser.id]\" class=\"btn\">Add Locations</a>\n                  </div>\n                </li>\n              </ul>\n    \n              <!-- <div id=\"map\" height=\"460px\" width=\"100%\"></div> -->\n         \n    \n\n    \n\n    <br/><br/>\n    <p>Name: {{currentUser.name}}</p>\n    <p>Email: {{currentUser.email}}</p>\n    <router-outlet  style=\"margin:0 auto;\"></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -520,7 +520,7 @@ var HomeComponent = /** @class */ (function () {
         this.route = route;
         this._router = _router;
         this.title = 'Test Google Maps';
-        this.map = new google.maps.Map(document.getElementById('gmap'));
+        this.isTracking = false;
         this.iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
         this.markerTypes = [
             {
@@ -532,14 +532,8 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.ngOnInit = function () {
         this.currentUser = '';
         this.logged_in = this._router.snapshot.paramMap.get('id');
-        // let mapProp={
-        //   center:new google.maps.LatLng(47.609859,-122.196615),
-        //   zoom:15,
-        //   mapTypeId: google.maps.MapTypeId.ROADMAP
-        // };
         this.logged();
         this.getUsers();
-        // this.getThings();
     };
     HomeComponent.prototype.logged = function () {
         var _this = this;
@@ -567,7 +561,6 @@ var HomeComponent = /** @class */ (function () {
             var contentString = '<p><b>User Name :' + user.name +
                 '<br/><b> Email :' + user.email +
                 '</p>';
-            // console.log(user.latitude,user.longitude);
             if (this.currentUser.id != user.id) {
                 this.locations.push({
                     latlon: new google.maps.LatLng(user.latitude, user.longitude),
@@ -583,7 +576,6 @@ var HomeComponent = /** @class */ (function () {
         return this.locations;
     };
     HomeComponent.prototype.initialiseMap = function (type) {
-        // this.map=new google.maps.Map(document.getElementById('gmap'),mapProp);
         console.log("values ", type);
         var map = new google.maps.Map(document.getElementById('gmap'), {
             zoom: 12,
@@ -591,14 +583,12 @@ var HomeComponent = /** @class */ (function () {
             mapTypeId: type,
         });
         this.locations.forEach(function (item) {
-            // console.log('item',item);
             var marker = new google.maps.Marker({
                 position: item.latlon,
                 map: map,
                 title: 'User Map',
                 icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
             });
-            console.log('marker', marker);
             google.maps.event.addListener(marker, 'click', function (e) {
                 var currentSelectedMarker = item;
                 item.message.open(map, marker);
@@ -625,42 +615,6 @@ var HomeComponent = /** @class */ (function () {
             icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
         });
     };
-    HomeComponent.prototype.setMapType = function (maptype) {
-        // this.map.setMapTypeId(mapTypeId);
-        // this.mapTypeId=google.maps.MapTypeId.maptype;
-    };
-    HomeComponent.prototype.setCenter = function () {
-        var _this = this;
-        this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
-        var location = new google.maps.LatLng(this.latitude, this.longitude);
-        console.log("This is what it looks like", location);
-        var marker = new google.maps.Marker({
-            position: location,
-            map: this.map,
-            title: 'Nobody!'
-        });
-        marker.addListener('click', this.simpleMarkerHandler);
-        marker.addListener('click', function () {
-            _this.markerHandler(marker);
-        });
-    };
-    HomeComponent.prototype.simpleMarkerHandler = function () {
-        alert('Simple Component\'s function...');
-    };
-    HomeComponent.prototype.markerHandler = function (marker) {
-        alert('Marker\'s Title: ' + marker.getTitle());
-    };
-    HomeComponent.prototype.showCustomMarker = function () {
-        this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
-        var location = new google.maps.LatLng(this.latitude, this.longitude);
-        console.log("selected marker: " + this.selectedMarkerType);
-        var marker = new google.maps.Marker({
-            position: location,
-            map: this.map,
-            icon: this.iconBase + this.selectedMarkerType,
-            title: 'Got you!'
-        });
-    };
     HomeComponent.prototype.toRad = function (num) {
         return num * (Math.PI / 180);
     };
@@ -684,23 +638,53 @@ var HomeComponent = /** @class */ (function () {
     };
     HomeComponent.prototype.editProfile = function (id) {
         console.log("Editing shit");
-        this.route.navigate(['/edit', id]);
+        //  this.route.navigate(['/edit/',id]);
     };
     HomeComponent.prototype.editSchedule = function (id) {
-        this.route.navigate(['/editschedule', id]);
+        // this.route.navigate(['/editschedule',id]);
     };
     HomeComponent.prototype.addLocations = function (id) {
-        this.route.navigate(['/gorunning', id]);
+        // this.route.navigate(['/gorunning',id]);
     };
     HomeComponent.prototype.logoutUser = function () {
         this.currentUser = '';
         this.logged_in = '';
         this._httpService.logout();
     };
-    __decorate([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('gmap'),
-        __metadata("design:type", Object)
-    ], HomeComponent.prototype, "gmapElement", void 0);
+    HomeComponent.prototype.findMe = function () {
+        var _this = this;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                _this.showPosition(position);
+            });
+        }
+        else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    };
+    HomeComponent.prototype.showPosition = function (position) {
+        this.currentUser.latitude = position.coords.latitude;
+        this.currentUser.longitude = position.coords.longitude;
+        this.initialiseMap('roadmap');
+    };
+    HomeComponent.prototype.trackMe = function () {
+        var _this = this;
+        if (navigator.geolocation) {
+            this.isTracking = true;
+            navigator.geolocation.watchPosition(function (position) {
+                _this.showTrackingPosition(position);
+            });
+        }
+        else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    };
+    HomeComponent.prototype.showTrackingPosition = function (position) {
+        console.log("tracking postion:  " + position.coords.latitude + " - " + position.coords.longitude);
+        this.currentUser.latitude = position.coords.latitude;
+        this.currentUser.longitude = position.coords.longitude;
+        // this.initialiseMap('roadmap');
+    };
     HomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-home',
@@ -1003,7 +987,7 @@ var RegisterComponent = /** @class */ (function () {
         temp.subscribe(function (data) {
             console.log("returned this", data);
             localStorage.setItem('token', data['token']);
-            _this._route.navigate(['/home']);
+            _this._route.navigate(['/home'], data['user'].insertId);
         });
     };
     RegisterComponent = __decorate([

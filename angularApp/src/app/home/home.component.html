@@ -1,21 +1,25 @@
 
+<div id='gmap' style='width:60%;height:450px;display:inline-block;border:5px solid cadetblue;'></div>
 <div id="content">
         <button class='btn' (click)='logoutUser()' *ngIf="currentUser">LogOut</button>
         <ul>
                 <li><button (click)='initialiseMap("terrain")' class="btn">Terrain</button></li>
-                <li> <button (click)='initialiseMap("satellite")' class="btn">Sattelite</button></li>
+                <li><button (click)='initialiseMap("satellite")' class="btn">Sattelite</button></li>
                 <li><button (click)='initialiseMap("roadmap")' class="btn">RoadMap</button></li>
+                <li><button (click)='findMe()' class='btn'>findMe</button></li>
+                <li><button (click)='trackMe()' class='btn'>trackme</button></li>
                 <li class="dropdown">
                   <button href="javascript:void(0)" class="btn">More</button>
                   <div class="dropdown-content">
-                    <a href="#" (click)="$event.preventDefault();editProfile(currentUser.id)" class="btn">Edit Profile</a>
-                    <a href="#" (click)="$event.preventDefault();editSchedule(currentUser.id)">Edit Schedule</a>
-                    <a href="#" (click)="$event.preventDefault();addLocations(currentUser.id)">Add Locations</a>
+                    <a href="#" [routerLink]="['edit',currentUser.id]" class="btn">Edit Profile</a>
+                    <a href="#" [routerLink]="['editschedule',currentUser.id]" class="btn">Edit Schedule</a>
+                    <a href="#" [routerLink]="['gorunning',currentUser.id]" class="btn">Add Locations</a>
                   </div>
                 </li>
               </ul>
     
-   
+              <!-- <div id="map" height="460px" width="100%"></div> -->
+         
     
 
     
@@ -23,5 +27,5 @@
     <br/><br/>
     <p>Name: {{currentUser.name}}</p>
     <p>Email: {{currentUser.email}}</p>
+    <router-outlet  style="margin:0 auto;"></router-outlet>
 </div>
-<router-outlet></router-outlet>
