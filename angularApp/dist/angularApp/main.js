@@ -285,7 +285,7 @@ var AuthGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\r\n  form .inputGroup {\r\n    margin: 0 0 2em;\r\n    padding: 0;\r\n    position: relative;\r\n  }\r\n  form .inputGroup:last-of-type {\r\n    margin-bottom: 0;\r\n  }\r\n  h2{\r\n    margin: 0 0 12px;\r\n    display: block;\r\n    font-size: 2.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  form label {\r\n    margin: 0 0 ;\r\n    display: inline-block;\r\n    font-size: 1.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  form input[type='email'], form input[type=\"text\"], form input[type='password'] {\r\n    display: inline-block;\r\n    margin: 0;\r\n    padding: 0 1em 0;\r\n    background-color: #f3fafd;\r\n    border: solid 2px #217093;\r\n    border-radius: 4px;\r\n    -webkit-appearance: none;\r\n    box-sizing: border-box;\r\n    width: 50%;\r\n    height: 35px;\r\n    font-size: 1.25em;\r\n    color: #353538;\r\n    font-weight: 300;\r\n    font-family: inherit;\r\n    transition: box-shadow .2s linear, border-color .25s ease-out;\r\n  }\r\n  form input[type='email']:focus, form input[type=\"text\"]:focus, form input[type='password']:focus {\r\n    outline: none;\r\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);\r\n    border: solid 2px #4eb8dd;\r\n  }\r\n  form input[type='email'], form input[type=\"text\"] {\r\n    padding: 14px 1em 0px;\r\n  }\r\n  form button {\r\n    display: inline-block;\r\n    margin: 0;\r\n    padding: .65em 1em 1em;\r\n    background-color: #4eb8dd;\r\n    border: none;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\r\n    box-shadow: none;\r\n    width: 50%;\r\n    height: 45px;\r\n    font-size: 1.55em;\r\n    color: #FFF;\r\n    font-weight: 600;\r\n    font-family: inherit;\r\n    transition: background-color .2s ease-out;\r\n  }\r\n  form button:hover, form button:active {\r\n    background-color: #217093;\r\n  }\r\n  "
 
 /***/ }),
 
@@ -296,7 +296,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  edit-profile works!\n</p>\n"
+module.exports = "<div style=\"text-align:center\">\n    <br/>\n    <h2>Edit Profile </h2>\n    <form (submit)='OnSubmit($event)'>\n        <div class=\"inputGroup inputGroup1\">\n            <label for=\"user.Name\">Name    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>\n            <input type=\"text\"  name=\"user.Name\"[(ngModel)]=\"user.Name\"/><br/>\n            <label for=\"user.Age\">Age    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>\n            <input type=\"text\"  name=\"user.Age\"[(ngModel)]=\"user.Age\"/><br/>\n            <label for=\"user.Average_Speed\">Average Speed(mins/mile)&nbsp;</label>\n            <input type=\"text\" name=\"user.Average_Speed\"[(ngModel)]=\"user.Average_Speed\"/> <br/>\n            <label for=\"user.Average_distance\">Average Distance(miles)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>\n            <input type=\"text\" name=\"user.Average_distance\"[(ngModel)]=\"user.Average_distance\"/><br/>\n            \n        </div>\n        <div class=\"inputGroup inputGroup3\">\n        <button type=\"submit\">Edit</button>\n      </div>\n    </form>\n  </div>\n"
 
 /***/ }),
 
@@ -311,6 +311,8 @@ module.exports = "<p>\n  edit-profile works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditProfileComponent", function() { return EditProfileComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../http.service */ "./src/app/http.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -321,10 +323,31 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var EditProfileComponent = /** @class */ (function () {
-    function EditProfileComponent() {
+    function EditProfileComponent(_httpService, route, _router) {
+        this._httpService = _httpService;
+        this.route = route;
+        this._router = _router;
     }
     EditProfileComponent.prototype.ngOnInit = function () {
+        this.user = { Name: '', Age: '', Average_Speed: '', Average_distance: '' };
+        this.logged_in = this._router.snapshot.paramMap.get('id');
+        this.getUserData();
+    };
+    EditProfileComponent.prototype.getUserData = function () {
+        var _this = this;
+        var temp = this._httpService.getUser(this.logged_in);
+        temp.subscribe(function (data) {
+            _this.user = data[0];
+            console.log(_this.user);
+        });
+    };
+    EditProfileComponent.prototype.OnSubmit = function (event) {
+        event.preventDefault();
+        var temp = this._httpService.updateUser(this.logged_in, this.user);
+        temp.subscribe(function (data) { return console.log(data); });
     };
     EditProfileComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -332,7 +355,7 @@ var EditProfileComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./edit-profile.component.html */ "./src/app/edit-profile/edit-profile.component.html"),
             styles: [__webpack_require__(/*! ./edit-profile.component.css */ "./src/app/edit-profile/edit-profile.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], EditProfileComponent);
     return EditProfileComponent;
 }());
@@ -348,7 +371,7 @@ var EditProfileComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\r\n  form .inputGroup {\r\n    margin: 0 0 2em;\r\n    padding: 0;\r\n    position: relative;\r\n  }\r\n  form .inputGroup:last-of-type {\r\n    margin-bottom: 0;\r\n  }\r\n  h2{\r\n    margin: 0 0 12px;\r\n    display: block;\r\n    font-size: 2.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  form label {\r\n    margin: 0 0 ;\r\n    display: inline-block;\r\n    font-size: 1.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  form input[type='email'], form input[type=\"text\"], form input[type='password'] {\r\n    display: inline-block;\r\n    margin: 0;\r\n    padding: 0 1em 0;\r\n    background-color: #f3fafd;\r\n    border: solid 2px #217093;\r\n    border-radius: 4px;\r\n    -webkit-appearance: none;\r\n    box-sizing: border-box;\r\n    width: 50%;\r\n    height: 35px;\r\n    font-size: 1.25em;\r\n    color: #353538;\r\n    font-weight: 300;\r\n    font-family: inherit;\r\n    transition: box-shadow .2s linear, border-color .25s ease-out;\r\n  }\r\n  form input[type='email']:focus, form input[type=\"text\"]:focus, form input[type='password']:focus {\r\n    outline: none;\r\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);\r\n    border: solid 2px #4eb8dd;\r\n  }\r\n  form input[type='email'], form input[type=\"text\"] {\r\n    padding: 14px 1em 0px;\r\n  }\r\n  form button {\r\n    display: inline-block;\r\n    margin: 0;\r\n    padding: .65em 1em 1em;\r\n    background-color: #4eb8dd;\r\n    border: none;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\r\n    box-shadow: none;\r\n    width: 50%;\r\n    height: 45px;\r\n    font-size: 1.55em;\r\n    color: #FFF;\r\n    font-weight: 600;\r\n    font-family: inherit;\r\n    transition: background-color .2s ease-out;\r\n  }\r\n  form button:hover, form button:active {\r\n    background-color: #217093;\r\n  }\r\n  "
 
 /***/ }),
 
@@ -359,7 +382,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  edit-schedule works!\n</p>\n"
+module.exports = "\n"
 
 /***/ }),
 
@@ -485,7 +508,7 @@ module.exports = "#content{\r\n    padding:10px;\r\n    background-color:#BEDCFE
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div id='gmap' style='width:60%;height:450px;display:inline-block;border:5px solid cadetblue;'></div>\n<div id=\"content\">\n        <button class='btn' (click)='logoutUser()' *ngIf=\"currentUser\">LogOut</button>\n        <ul>\n                <li><button (click)='initialiseMap(\"terrain\")' class=\"btn\">Terrain</button></li>\n                <li><button (click)='initialiseMap(\"satellite\")' class=\"btn\">Sattelite</button></li>\n                <li><button (click)='initialiseMap(\"roadmap\")' class=\"btn\">RoadMap</button></li>\n                <li><button (click)='findMe()' class='btn'>findMe</button></li>\n                <li><button (click)='trackMe()' class='btn'>trackme</button></li>\n                <li class=\"dropdown\">\n                  <button href=\"javascript:void(0)\" class=\"btn\">More</button>\n                  <div class=\"dropdown-content\">\n                    <a href=\"#\" [routerLink]=\"['edit',currentUser.id]\" class=\"btn\">Edit Profile</a>\n                    <a href=\"#\" [routerLink]=\"['editschedule',currentUser.id]\" class=\"btn\">Edit Schedule</a>\n                    <a href=\"#\" [routerLink]=\"['gorunning',currentUser.id]\" class=\"btn\">Add Locations</a>\n                  </div>\n                </li>\n              </ul>\n    \n              <!-- <div id=\"map\" height=\"460px\" width=\"100%\"></div> -->\n         \n    \n\n    \n\n    <br/><br/>\n    <p>Name: {{currentUser.name}}</p>\n    <p>Email: {{currentUser.email}}</p>\n    <router-outlet  style=\"margin:0 auto;\"></router-outlet>\n</div>\n"
+module.exports = "\n<div id='gmap' style='width:60%;height:450px;display:inline-block;border:5px solid cadetblue;'></div>\n<div id=\"content\">\n        \n        <ul>\n            <li><button (click)='findMe()' class='btn'>Where Am I</button></li>\n            <li><button *ngIf='isTracking' (click)='trackMe()' class='btn'>Allow Tracking</button></li>\n            \n            <li class=\"dropdown\">\n                <button href=\"javascript:void(0)\" class=\"btn\">Change Map Types</button>\n                <div class=\"dropdown-content\">\n                <a href='#' (click)='$event.preventDefault();initialiseMap(\"terrain\")' class=\"btn\">Terrain</a>\n                <a href='#' (click)='$event.preventDefault();initialiseMap(\"satellite\")' class=\"btn\">Sattelite</a>\n                <a href='#' (click)='$event.preventDefault();initialiseMap(\"roadmap\")' class=\"btn\">RoadMap</a>\n                </div>\n                </li>\n                <li class=\"dropdown\">\n                  <button href=\"javascript:void(0)\" class=\"btn\">More</button>\n                  <div class=\"dropdown-content\">\n                    <a href=\"#\" [routerLink]=\"['edit',currentUser.id]\" class=\"btn\">Edit Profile</a>\n                    <a href=\"#\" [routerLink]=\"['editschedule',currentUser.id]\" class=\"btn\">Edit Schedule</a>\n                    <a href=\"#\" (click)='$event.preventDefault();findMe()' class=\"btn\">Add Locations</a>\n                  </div>\n                </li>\n                <li><button class='btn' (click)='logoutUser()' *ngIf=\"currentUser\">LogOut</button></li>\n        </ul>\n    \n              <!-- <div id=\"map\" height=\"460px\" width=\"100%\"></div> -->\n         \n    \n\n    \n\n    <br/><br/>\n    <p>Name: {{currentUser.name}}</p>\n    <p>Email: {{currentUser.email}}</p>\n    <router-outlet  style=\"margin:0 auto;\"></router-outlet>\n</div>\n"
 
 /***/ }),
 
@@ -665,6 +688,15 @@ var HomeComponent = /** @class */ (function () {
     HomeComponent.prototype.showPosition = function (position) {
         this.currentUser.latitude = position.coords.latitude;
         this.currentUser.longitude = position.coords.longitude;
+        if (confirm("Would you like to store this location for Future Use?")) {
+            console.log("Saving it");
+            var values = { latitude: position.coords.latitude, longitude: position.coords.longitude, user_id: this.logged_in };
+            var temp = this._httpService.addAdress(values);
+            temp.subscribe(function (data) { return console.log(data); });
+        }
+        else {
+            console.log("Not saving it");
+        }
         this.initialiseMap('roadmap');
     };
     HomeComponent.prototype.trackMe = function () {
@@ -737,6 +769,10 @@ var HttpService = /** @class */ (function () {
         localStorage.removeItem('token');
         this.route.navigate(['/login']);
     };
+    HttpService.prototype.addAdress = function (values) {
+        console.log("Saving an adress");
+        return this._http.post('/addadress', values);
+    };
     HttpService.prototype.getUser = function (id) {
         return this._http.get('/user/' + id);
     };
@@ -755,6 +791,10 @@ var HttpService = /** @class */ (function () {
     };
     HttpService.prototype.getusers = function () {
         return this._http.get('/users');
+    };
+    HttpService.prototype.updateUser = function (id, values) {
+        console.log("Here");
+        return this._http.post('/update/' + id, values);
     };
     HttpService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({

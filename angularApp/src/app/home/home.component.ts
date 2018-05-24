@@ -231,6 +231,17 @@ findMe() {
 showPosition(position) {
   this.currentUser.latitude = position.coords.latitude;
   this.currentUser.longitude = position.coords.longitude;
+  if(confirm("Would you like to store this location for Future Use?")){
+    console.log("Saving it");
+    let values={latitude:position.coords.latitude,longitude:position.coords.longitude,user_id:this.logged_in}
+    let temp=this._httpService.addAdress(values);
+
+    temp.subscribe(data=>console.log(data));
+  }
+  else{
+    console.log("Not saving it");
+  }
+  
 
   this.initialiseMap('roadmap');
 }

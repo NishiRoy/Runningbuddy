@@ -18,6 +18,11 @@ export class HttpService {
     this.route.navigate(['/login']);
   }
 
+  addAdress(values){
+    console.log("Saving an adress");
+    return this._http.post('/addadress',values);
+  }
+
   getUser(id){
       return this._http.get('/user/'+id);
   }
@@ -41,5 +46,10 @@ export class HttpService {
 
   getusers(){
      return this._http.get('/users');
+  }
+
+  updateUser(id,values){
+    console.log("Here");
+    return this._http.post('/update/'+id,values);
   }
 }

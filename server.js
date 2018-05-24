@@ -103,34 +103,33 @@ app.get('/user/:id', function(req, res) {
     })
 })
 
-app.get('/books',function(req,res){
-    var query=connection.query('Select * from books',function(err,result){
+app.post('/addadress',function(req,res){
 
+    console.log(req.body);
+    var query=connection.query("Insert into address (latitude,longitude,users_id) values ('"+req.body.latitude+"','"+req.body.longitude+"','"+req.body.user_id+"');",function(err,add){
         if(err){
-        console.log(err);
-            res.send(err);
-        }else{
-        console.log(result);
-            res.send(result);
+        console.log(err)
+        return res.send({err:"Something went wrong"});
         }
-
-    });
-    console.log();
+        else{
+            res.send(add);
+        }
+    })
 })
 
-app.post('/test/book', function(req, res){
+app.post('/update/:id',function(req,res){
     console.log(req.body);
-    console.log('I was here');
-    var query = connection.query("INSERT INTO books (author,books_name) VALUES ('"+req.body.author+"','"+req.body.books_name+"');", function(err, result) {
-      if (err) {
-        console.error(err);
-        return res.send(err);
-      } else {
-        return res.send(result);
-      }
- });
-
-});
+    var query=connection.query("UPDATE user Set Name='"+req.body.Name+"', Age='"+req.body.Age+"', Average_Speed='"+req.body.Average_Speed+"', Average_distance='"+req.body.Average_distance+"' Where id="+req.params.id+";",function(err,result){
+        if(err){
+            console.log(err);
+            res.send({err:"err"});
+        }
+        else{
+            console.log("Success");
+            res.send(result);
+        }
+    })
+})
 
 app.post('/login/user', function(req, res){
     console.log(req.body);

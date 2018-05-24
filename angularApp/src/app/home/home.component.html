@@ -1,22 +1,29 @@
 
 <div id='gmap' style='width:60%;height:450px;display:inline-block;border:5px solid cadetblue;'></div>
 <div id="content">
-        <button class='btn' (click)='logoutUser()' *ngIf="currentUser">LogOut</button>
+        
         <ul>
-                <li><button (click)='initialiseMap("terrain")' class="btn">Terrain</button></li>
-                <li><button (click)='initialiseMap("satellite")' class="btn">Sattelite</button></li>
-                <li><button (click)='initialiseMap("roadmap")' class="btn">RoadMap</button></li>
-                <li><button (click)='findMe()' class='btn'>findMe</button></li>
-                <li><button (click)='trackMe()' class='btn'>trackme</button></li>
+            <li><button (click)='findMe()' class='btn'>Where Am I</button></li>
+            <li><button *ngIf='isTracking' (click)='trackMe()' class='btn'>Allow Tracking</button></li>
+            
+            <li class="dropdown">
+                <button href="javascript:void(0)" class="btn">Change Map Types</button>
+                <div class="dropdown-content">
+                <a href='#' (click)='$event.preventDefault();initialiseMap("terrain")' class="btn">Terrain</a>
+                <a href='#' (click)='$event.preventDefault();initialiseMap("satellite")' class="btn">Sattelite</a>
+                <a href='#' (click)='$event.preventDefault();initialiseMap("roadmap")' class="btn">RoadMap</a>
+                </div>
+                </li>
                 <li class="dropdown">
                   <button href="javascript:void(0)" class="btn">More</button>
                   <div class="dropdown-content">
                     <a href="#" [routerLink]="['edit',currentUser.id]" class="btn">Edit Profile</a>
                     <a href="#" [routerLink]="['editschedule',currentUser.id]" class="btn">Edit Schedule</a>
-                    <a href="#" [routerLink]="['gorunning',currentUser.id]" class="btn">Add Locations</a>
+                    <a href="#" (click)='$event.preventDefault();findMe()' class="btn">Add Locations</a>
                   </div>
                 </li>
-              </ul>
+                <li><button class='btn' (click)='logoutUser()' *ngIf="currentUser">LogOut</button></li>
+        </ul>
     
               <!-- <div id="map" height="460px" width="100%"></div> -->
          
