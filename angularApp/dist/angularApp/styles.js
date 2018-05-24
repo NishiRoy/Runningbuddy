@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\n"
 
 /***/ }),
 
@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\rohit\Desktop\coding_dojo_mean\Project\testMySql\angularApp\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\Users\Rob\Documents\DojoAssignments\Mean\Project Week\Runningbuddy\angularApp\src\styles.css */"./src/styles.css");
 
 
 /***/ })
