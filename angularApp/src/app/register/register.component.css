@@ -16,7 +16,7 @@ html {
   
   form {
     position: absolute;
-    top: 50%;
+    top: 75%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
@@ -73,6 +73,9 @@ html {
     color: #217093;
     font-weight: 700;
     font-family: inherit;
+    position: absolute;
+    top: 0%;
+    left: 42%;
   }
   form label {
     margin: 0 0 12px;
