@@ -23,7 +23,7 @@ import { RootComponent } from './root-component/root-component.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [HttpService,AuthGuard],
+  providers: [HttpService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
