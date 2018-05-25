@@ -1,15 +1,22 @@
 * {
-      box-sizing: border-box
+      box-sizing: border-box;
+      padding: 0px;
     }
 
     /* Slideshow container */
 
     .slideshow-container {
-      width: 1000px;
+      height: 100%;
       position: absolute;
-      display: inline;
+      display: block;
       margin: auto;
       z-index: 1;
+      background-size: cover;
+    }
+    .backgrounds{
+      /* height: 100%; */
+      /* 670px */
+      width: 1020px;
     }
 
     #login_button {
