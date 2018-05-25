@@ -44,6 +44,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_schedule_edit_schedule_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./edit-schedule/edit-schedule.component */ "./src/app/edit-schedule/edit-schedule.component.ts");
 /* harmony import */ var _go_running_go_running_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./go-running/go-running.component */ "./src/app/go-running/go-running.component.ts");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _root_component_root_component_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./root-component/root-component.component */ "./src/app/root-component/root-component.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,7 +61,9 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
 var routes = [
+    { path: '', component: _root_component_root_component_component__WEBPACK_IMPORTED_MODULE_10__["RootComponent"] },
     { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_2__["LoginComponent"] },
     { path: 'register', component: _register_register_component__WEBPACK_IMPORTED_MODULE_3__["RegisterComponent"] },
     { path: 'home/:id', component: _home_home_component__WEBPACK_IMPORTED_MODULE_4__["HomeComponent"], canActivate: [_auth_guard__WEBPACK_IMPORTED_MODULE_9__["AuthGuard"]], children: [
@@ -68,7 +71,7 @@ var routes = [
             { path: 'editschedule/:id', component: _edit_schedule_edit_schedule_component__WEBPACK_IMPORTED_MODULE_7__["EditScheduleComponent"] },
             { path: 'gorunning/:id', component: _go_running_go_running_component__WEBPACK_IMPORTED_MODULE_8__["GoRunningComponent"] }
         ] },
-    { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"] }
+    { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_5__["PageNotFoundComponent"] },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -105,7 +108,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- The content below is only a placeholder and can be replaced.\n<div style=\"text-align:center\">\n  <h1>\n    Welcome to {{ title }}!\n  </h1>\n  \n</div> -->\n\n<!--The content below is only a placeholder and can be replaced.-->\n\n\n<router-outlet></router-outlet>\n"
+module.exports = "<router-outlet></router-outlet>"
 
 /***/ }),
 
@@ -186,12 +189,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _auth_guard__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./auth.guard */ "./src/app/auth.guard.ts");
+/* harmony import */ var _root_component_root_component_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./root-component/root-component.component */ "./src/app/root-component/root-component.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -208,6 +213,7 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_2__["rountingcomponent"],
+                _root_component_root_component_component__WEBPACK_IMPORTED_MODULE_8__["RootComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
@@ -971,7 +977,7 @@ var PageNotFoundComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "html {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n  \r\n  body {\r\n    background-color: #eff3f4;\r\n    position: relative;\r\n    width: 100%;\r\n    height: 100%;\r\n    font-size: 16px;\r\n    font-family: 'Source Sans Pro', sans-serif;\r\n    font-weight: 400;\r\n    -webkit-font-smoothing: antialiased;\r\n  }\r\n  \r\n  form {\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%, -50%);\r\n            transform: translate(-50%, -50%);\r\n    display: block;\r\n    width: 100%;\r\n    max-width: 400px;\r\n    background-color: #FFF;\r\n    margin: 0;\r\n    padding: 2.25em;\r\n    box-sizing: border-box;\r\n    border: solid 1px #DDD;\r\n    border-radius: .5em;\r\n    font-family: 'Source Sans Pro', sans-serif;\r\n  }\r\n  \r\n  form .svgContainer {\r\n    position: relative;\r\n    width: 200px;\r\n    height: 200px;\r\n    margin: 0 auto 1em;\r\n    border-radius: 50%;\r\n    background: none;\r\n    border: solid 2.5px #3A5E77;\r\n    overflow: hidden;\r\n    pointer-events: none;\r\n  }\r\n  \r\n  form .svgContainer div {\r\n    position: relative;\r\n    width: 100%;\r\n    height: 0;\r\n    overflow: hidden;\r\n    padding-bottom: 100%;\r\n  }\r\n  \r\n  form .svgContainer .mySVG {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    pointer-events: none;\r\n  }\r\n  \r\n  form .inputGroup {\r\n    margin: 0 0 2em;\r\n    padding: 0;\r\n    position: relative;\r\n  }\r\n  \r\n  form .inputGroup:last-of-type {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  h2{\r\n    margin: 0 0 12px;\r\n    display: block;\r\n    font-size: 3.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  \r\n  form label {\r\n    margin: 0 0 12px;\r\n    display: block;\r\n    font-size: 1.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  \r\n  form input[type='email'], form input[type=\"text\"], form input[type='password'] {\r\n    display: block;\r\n    margin: 0;\r\n    padding: 0 1em 0;\r\n    background-color: #f3fafd;\r\n    border: solid 2px #217093;\r\n    border-radius: 4px;\r\n    -webkit-appearance: none;\r\n    box-sizing: border-box;\r\n    width: 100%;\r\n    height: 65px;\r\n    font-size: 1.55em;\r\n    color: #353538;\r\n    font-weight: 600;\r\n    font-family: inherit;\r\n    transition: box-shadow .2s linear, border-color .25s ease-out;\r\n  }\r\n  \r\n  form input[type='email']:focus, form input[type=\"text\"]:focus, form input[type='password']:focus {\r\n    outline: none;\r\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);\r\n    border: solid 2px #4eb8dd;\r\n  }\r\n  \r\n  form input[type='email'], form input[type=\"text\"] {\r\n    padding: 14px 1em 0px;\r\n  }\r\n  \r\n  form button {\r\n    display: block;\r\n    margin: 0;\r\n    padding: .65em 1em 1em;\r\n    background-color: #4eb8dd;\r\n    border: none;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\r\n    box-shadow: none;\r\n    width: 100%;\r\n    height: 65px;\r\n    font-size: 1.55em;\r\n    color: #FFF;\r\n    font-weight: 600;\r\n    font-family: inherit;\r\n    transition: background-color .2s ease-out;\r\n  }\r\n  \r\n  form button:hover, form button:active {\r\n    background-color: #217093;\r\n  }\r\n  \r\n  form .inputGroup1 .helper {\r\n    position: absolute;\r\n    z-index: 1;\r\n    font-family: inherit;\r\n  }\r\n  \r\n  form .inputGroup1 .helper1 {\r\n    top: 0;\r\n    left: 0;\r\n    -webkit-transform: translate(1.4em, 2.6em) scale(1);\r\n            transform: translate(1.4em, 2.6em) scale(1);\r\n    -webkit-transform-origin: 0 0;\r\n            transform-origin: 0 0;\r\n    color: #217093;\r\n    font-size: 1.25em;\r\n    font-weight: 400;\r\n    opacity: .65;\r\n    pointer-events: none;\r\n    transition: opacity .2s linear, -webkit-transform .2s ease-out;\r\n    transition: transform .2s ease-out, opacity .2s linear;\r\n    transition: transform .2s ease-out, opacity .2s linear, -webkit-transform .2s ease-out;\r\n  }\r\n  \r\n  form .inputGroup1.focusWithText .helper {\r\n    /*input[type='email']:focus + .helper {*/\r\n    -webkit-transform: translate(1.4em, 2em) scale(0.65);\r\n            transform: translate(1.4em, 2em) scale(0.65);\r\n    opacity: 1;\r\n  }"
+module.exports = "html {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n  \r\n  body {\r\n    background-color: #eff3f4;\r\n    position: relative;\r\n    width: 100%;\r\n    height: 100%;\r\n    font-size: 16px;\r\n    font-family: 'Source Sans Pro', sans-serif;\r\n    font-weight: 400;\r\n    -webkit-font-smoothing: antialiased;\r\n  }\r\n  \r\n  form {\r\n    position: absolute;\r\n    top: 75%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%, -50%);\r\n            transform: translate(-50%, -50%);\r\n    display: block;\r\n    width: 100%;\r\n    max-width: 400px;\r\n    background-color: #FFF;\r\n    margin: 0;\r\n    padding: 2.25em;\r\n    box-sizing: border-box;\r\n    border: solid 1px #DDD;\r\n    border-radius: .5em;\r\n    font-family: 'Source Sans Pro', sans-serif;\r\n  }\r\n  \r\n  form .svgContainer {\r\n    position: relative;\r\n    width: 200px;\r\n    height: 200px;\r\n    margin: 0 auto 1em;\r\n    border-radius: 50%;\r\n    background: none;\r\n    border: solid 2.5px #3A5E77;\r\n    overflow: hidden;\r\n    pointer-events: none;\r\n  }\r\n  \r\n  form .svgContainer div {\r\n    position: relative;\r\n    width: 100%;\r\n    height: 0;\r\n    overflow: hidden;\r\n    padding-bottom: 100%;\r\n  }\r\n  \r\n  form .svgContainer .mySVG {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    pointer-events: none;\r\n  }\r\n  \r\n  form .inputGroup {\r\n    margin: 0 0 2em;\r\n    padding: 0;\r\n    position: relative;\r\n  }\r\n  \r\n  form .inputGroup:last-of-type {\r\n    margin-bottom: 0;\r\n  }\r\n  \r\n  h2{\r\n    margin: 0 0 12px;\r\n    display: block;\r\n    font-size: 3.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n    position: absolute;\r\n    top: 0%;\r\n    left: 42%;\r\n  }\r\n  \r\n  form label {\r\n    margin: 0 0 12px;\r\n    display: block;\r\n    font-size: 1.25em;\r\n    color: #217093;\r\n    font-weight: 700;\r\n    font-family: inherit;\r\n  }\r\n  \r\n  form input[type='email'], form input[type=\"text\"], form input[type='password'] {\r\n    display: block;\r\n    margin: 0;\r\n    padding: 0 1em 0;\r\n    background-color: #f3fafd;\r\n    border: solid 2px #217093;\r\n    border-radius: 4px;\r\n    -webkit-appearance: none;\r\n    box-sizing: border-box;\r\n    width: 100%;\r\n    height: 65px;\r\n    font-size: 1.55em;\r\n    color: #353538;\r\n    font-weight: 600;\r\n    font-family: inherit;\r\n    transition: box-shadow .2s linear, border-color .25s ease-out;\r\n  }\r\n  \r\n  form input[type='email']:focus, form input[type=\"text\"]:focus, form input[type='password']:focus {\r\n    outline: none;\r\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);\r\n    border: solid 2px #4eb8dd;\r\n  }\r\n  \r\n  form input[type='email'], form input[type=\"text\"] {\r\n    padding: 14px 1em 0px;\r\n  }\r\n  \r\n  form button {\r\n    display: block;\r\n    margin: 0;\r\n    padding: .65em 1em 1em;\r\n    background-color: #4eb8dd;\r\n    border: none;\r\n    border-radius: 4px;\r\n    box-sizing: border-box;\r\n    box-shadow: none;\r\n    width: 100%;\r\n    height: 65px;\r\n    font-size: 1.55em;\r\n    color: #FFF;\r\n    font-weight: 600;\r\n    font-family: inherit;\r\n    transition: background-color .2s ease-out;\r\n  }\r\n  \r\n  form button:hover, form button:active {\r\n    background-color: #217093;\r\n  }\r\n  \r\n  form .inputGroup1 .helper {\r\n    position: absolute;\r\n    z-index: 1;\r\n    font-family: inherit;\r\n  }\r\n  \r\n  form .inputGroup1 .helper1 {\r\n    top: 0;\r\n    left: 0;\r\n    -webkit-transform: translate(1.4em, 2.6em) scale(1);\r\n            transform: translate(1.4em, 2.6em) scale(1);\r\n    -webkit-transform-origin: 0 0;\r\n            transform-origin: 0 0;\r\n    color: #217093;\r\n    font-size: 1.25em;\r\n    font-weight: 400;\r\n    opacity: .65;\r\n    pointer-events: none;\r\n    transition: opacity .2s linear, -webkit-transform .2s ease-out;\r\n    transition: transform .2s ease-out, opacity .2s linear;\r\n    transition: transform .2s ease-out, opacity .2s linear, -webkit-transform .2s ease-out;\r\n  }\r\n  \r\n  form .inputGroup1.focusWithText .helper {\r\n    /*input[type='email']:focus + .helper {*/\r\n    -webkit-transform: translate(1.4em, 2em) scale(0.65);\r\n            transform: translate(1.4em, 2em) scale(0.65);\r\n    opacity: 1;\r\n  }"
 
 /***/ }),
 
@@ -982,7 +988,7 @@ module.exports = "html {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n  \r
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center\">\r\n  <br/>\r\n  <h2>Sign Up </h2>\r\n  <form (submit)='OnSubmit($event)'>\r\n      <div class=\"inputGroup inputGroup1\">\r\n          <label for=\"user.name\">Name</label>\r\n          <input type=\"text\"  name=\"user.name\"[(ngModel)]=\"user.name\"/><br/>\r\n          <label for=\"user.email\">Email</label>\r\n          <input type=\"email\"  name=\"user.email\"[(ngModel)]=\"user.email\"/><br/>\r\n          <label for=\"user.password\">Password</label>\r\n          <input type=\"password\"  name=\"user.password\"[(ngModel)]=\"user.password\"/><br/>\r\n          <label for=\"user.cpassword\">Confirm Password</label>\r\n          <input type=\"password\"  name=\"user.cpassword\"[(ngModel)]=\"user.cpassword\"/><br/>\r\n          <label for=\"user.lat\">Latitude</label>\r\n          <input type=\"text\"  name=\"user.lat\"[(ngModel)]=\"user.lat\"/><br/>\r\n          <label for=\"user.long\">Longitude</label>\r\n          <input type=\"text\"  name=\"user.long\"[(ngModel)]=\"user.long\"/><br/><br/>\r\n      </div>\r\n      <div class=\"inputGroup inputGroup3\">\r\n      <button type=\"submit\">Register</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
+module.exports = "<div id='wrapper' style=\"text-align:center\">\r\n  <br>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  <br>\r\n  <h2>Sign Up </h2>\r\n  <form (submit)='OnSubmit($event)'>\r\n      <div class=\"inputGroup inputGroup1\">\r\n          <label for=\"user.name\">Name</label>\r\n          <input type=\"text\"  name=\"user.name\"[(ngModel)]=\"user.name\"/><br/>\r\n          <label for=\"user.email\">Email</label>\r\n          <input type=\"email\"  name=\"user.email\"[(ngModel)]=\"user.email\"/><br/>\r\n          <label for=\"user.password\">Password</label>\r\n          <input type=\"password\"  name=\"user.password\"[(ngModel)]=\"user.password\"/><br/>\r\n          <label for=\"user.cpassword\">Confirm Password</label>\r\n          <input type=\"password\"  name=\"user.cpassword\"[(ngModel)]=\"user.cpassword\"/><br/>\r\n          <label for=\"user.lat\">Latitude</label>\r\n          <input type=\"text\"  name=\"user.lat\"[(ngModel)]=\"user.lat\"/><br/>\r\n          <label for=\"user.long\">Longitude</label>\r\n          <input type=\"text\"  name=\"user.long\"[(ngModel)]=\"user.long\"/><br/><br/>\r\n      </div>\r\n      <div class=\"inputGroup inputGroup3\">\r\n      <button type=\"submit\">Register</button>\r\n    </div>\r\n  </form>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1041,6 +1047,107 @@ var RegisterComponent = /** @class */ (function () {
     return RegisterComponent;
 }());
 
+
+
+/***/ }),
+
+/***/ "./src/app/root-component/root-component.component.css":
+/*!*************************************************************!*\
+  !*** ./src/app/root-component/root-component.component.css ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "* {\r\n      box-sizing: border-box\r\n    }\r\n\r\n    /* Slideshow container */\r\n\r\n    .slideshow-container {\r\n      width: 1000px;\r\n      position: absolute;\r\n      display: inline;\r\n      margin: auto;\r\n      z-index: 1;\r\n    }\r\n\r\n    #login_button {\r\n      position: absolute;\r\n      margin-left: 100px;\r\n      margin-top: 179px;\r\n      z-index: 2;\r\n      height: 75px;\r\n    }\r\n\r\n    #register_button {\r\n      position: absolute;\r\n      margin-left: 100px;\r\n      margin-top: 377px;\r\n      z-index: 2;\r\n      height: 75px;\r\n    }\r\n\r\n    #title {\r\n      position: absolute;\r\n      margin-left: 271px;\r\n      margin-top: 550px;\r\n      z-index: 2;\r\n      height: 100px;\r\n    }\r\n\r\n    /* Hide the images by default */\r\n\r\n    .mySlides {\r\n      display: none;\r\n    }\r\n\r\n    /* Next & previous buttons */\r\n\r\n    .prev,\r\n    .next {\r\n      cursor: pointer;\r\n      position: absolute;\r\n      top: 50%;\r\n      width: auto;\r\n      margin-top: -22px;\r\n      padding: 16px;\r\n      color: white;\r\n      font-weight: bold;\r\n      font-size: 18px;\r\n      transition: 0.6s ease;\r\n      border-radius: 0 3px 3px 0;\r\n    }\r\n\r\n    /* Position the \"next button\" to the right */\r\n\r\n    .next {\r\n      right: 0;\r\n      border-radius: 3px 0 0 3px;\r\n    }\r\n\r\n    /* On hover, add a black background color with a little bit see-through */\r\n\r\n    .prev:hover,\r\n    .next:hover {\r\n      background-color: rgba(0, 0, 0, 0.8);\r\n    }\r\n\r\n    /* Caption text */\r\n\r\n    .text {\r\n      color: #f2f2f200;\r\n      font-size: 15px;\r\n      padding: 8px 12px;\r\n      position: absolute;\r\n      bottom: 8px;\r\n      width: 100%;\r\n      text-align: center;\r\n    }\r\n\r\n    /* Number text (1/3 etc) */\r\n\r\n    .numbertext {\r\n      color: #f2f2f2;\r\n      font-size: 12px;\r\n      padding: 8px 12px;\r\n      position: absolute;\r\n      top: 0;\r\n    }\r\n\r\n    /* The dots/bullets/indicators */\r\n\r\n    .dot {\r\n      cursor: pointer;\r\n      height: 15px;\r\n      width: 15px;\r\n      margin: 0 2px;\r\n      background-color: #bbb;\r\n      border-radius: 50%;\r\n      display: inline-block;\r\n      transition: background-color 0.6s ease;\r\n    }\r\n\r\n    .active,\r\n    .dot:hover {\r\n      background-color: #717171;\r\n    }\r\n\r\n    /* Fading animation */\r\n\r\n    .fade {\r\n      -webkit-animation-name: fade;\r\n      -webkit-animation-duration: 1.5s;\r\n      animation-name: fade;\r\n      animation-duration: 1.5s;\r\n    }\r\n\r\n    @-webkit-keyframes fade {\r\n      from {\r\n        opacity: .4\r\n      }\r\n      to {\r\n        opacity: 1\r\n      }\r\n    }\r\n\r\n    @keyframes fade {\r\n      from {\r\n        opacity: .4\r\n      }\r\n      to {\r\n        opacity: 1\r\n      }\r\n    }"
+
+/***/ }),
+
+/***/ "./src/app/root-component/root-component.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/root-component/root-component.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<script>\r\n  var slideIndex = 1;\r\n  showSlides(slideIndex);\r\n\r\n  // Next/previous controls\r\n  function plusSlides(n) {\r\n    showSlides(slideIndex += n);\r\n  }\r\n\r\n  // Thumbnail image controls\r\n  function currentSlide(n) {\r\n    showSlides(slideIndex = n);\r\n  }\r\n\r\n  function showSlides(n) {\r\n    var i;\r\n    var slides = document.getElementsByClassName(\"mySlides\");\r\n    var dots = document.getElementsByClassName(\"dot\");\r\n    if (n > slides.length) { slideIndex = 1 }\r\n    if (n < 1) { slideIndex = slides.length }\r\n    for (i = 0; i < slides.length; i++) {\r\n      slides[i].style.display = \"none\";\r\n    }\r\n    for (i = 0; i < dots.length; i++) {\r\n      dots[i].className = dots[i].className.replace(\" active\", \"\");\r\n    }\r\n    slides[slideIndex - 1].style.display = \"block\";\r\n    dots[slideIndex - 1].className += \" active\";\r\n  }\r\n</script>\r\n\r\n\r\n<script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js'></script>\r\n<div class=\"slideshow-container\">\r\n  <img src='./assets/login.png' id='login_button' (click)='login_button()'>\r\n  <img src='./assets/register.png' id='register_button' (click)='register_button()'>\r\n  <img src='./assets/logo.png' id='title'>\r\n\r\n  <!-- Full-width images with number and caption text -->\r\n  <div class=\"mySlides fade\">\r\n    <div class=\"numbertext\">1 / 3</div>\r\n    <img src=\"./assets/running_1.jpeg\" style=\"width:100%\">\r\n    <div class=\"text\"></div>\r\n  </div>\r\n\r\n  <div class=\"mySlides fade\">\r\n    <div class=\"numbertext\"> / 3</div>\r\n    <img src=\"./assets/running_2.jpeg\" style=\"width:100%\">\r\n    <div class=\"text\"></div>\r\n  </div>\r\n\r\n  <div class=\"mySlides fade\">\r\n    <div class=\"numbertext\">3 / 3</div>\r\n    <img src=\"./assets/running_3.jpeg\" style=\"width:100%\">\r\n    <div class=\"text\"></div>\r\n  </div>\r\n\r\n  <!-- Next and previous buttons -->\r\n  <a class=\"prev\" (click)=\"plusSlides(-1)\">&#10094;</a>\r\n  <a class=\"next\" (click)=\"plusSlides(1)\">&#10095;</a>\r\n</div>\r\n<br>\r\n\r\n<!-- The dots/circles -->\r\n<div style=\"text-align:center\">\r\n  <span class=\"dot\" (click)=\"currentSlide(1)\"></span>\r\n  <span class=\"dot\" (click)=\"currentSlide(2)\"></span>\r\n  <span class=\"dot\" (click)=\"currentSlide(3)\"></span>\r\n</div>\r\n\r\n<app-root></app-root>\r\n<!-- <div id='gmap' style='width:80%;height:400px'></div> -->\r\n\r\n"
+
+/***/ }),
+
+/***/ "./src/app/root-component/root-component.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/root-component/root-component.component.ts ***!
+  \************************************************************/
+/*! exports provided: RootComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RootComponent", function() { return RootComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var RootComponent = /** @class */ (function () {
+    function RootComponent(_router) {
+        this._router = _router;
+        this.slideIndex = 1;
+    }
+    RootComponent.prototype.ngOnInit = function () {
+        this.showSlides(this.slideIndex);
+    };
+    RootComponent.prototype.plusSlides = function (n) {
+        this.showSlides(this.slideIndex += n);
+    };
+    RootComponent.prototype.currentSlide = function (n) {
+        this.showSlides(this.slideIndex = n);
+    };
+    RootComponent.prototype.showSlides = function (n) {
+        var i;
+        var slides = document.getElementsByClassName('mySlides');
+        var dots = document.getElementsByClassName('dot');
+        if (n > slides.length) {
+            this.slideIndex = 1;
+        }
+        if (n < 1) {
+            this.slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(' active', '');
+        }
+        slides[this.slideIndex - 1].style.display = 'block';
+        dots[this.slideIndex - 1].className += ' active';
+    };
+    RootComponent.prototype.login_button = function () {
+        this._router.navigate(['/login']);
+    };
+    RootComponent.prototype.register_button = function () {
+        this._router.navigate(['/register']);
+    };
+    RootComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-root-component',
+            template: __webpack_require__(/*! ./root-component.component.html */ "./src/app/root-component/root-component.component.html"),
+            styles: [__webpack_require__(/*! ./root-component.component.css */ "./src/app/root-component/root-component.component.css")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["Router"]])
+    ], RootComponent);
+    return RootComponent;
+}());
+
+// Next/previous controls
+// Thumbnail image controls
 
 
 /***/ }),
